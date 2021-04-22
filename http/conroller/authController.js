@@ -1,53 +1,38 @@
-const User =require('../modles/user')
-
+const User = require('../modles/users')
+const bcrypt = require('bcrypt')
 function authController() {
-    return{
-        login  (req, res) {
+    return {
+        login(req, res) {
             res.render('auth/login')
-         },
-         postLogin(req, res, next) {
-            const { email, password }   = req.body
-           // Validate request 
-            if(!email || !password) {
-                req.flash('error', 'All fields are required')
-                return res.redirect('/login')
-            }
-            passport.authenticate('local', (err, user, info) => {
-                if(err) {
-                    req.flash('error', info.message )
-                    return next(err)
-                }
-                if(!user) {
-                    req.flash('error', info.message )
-                    return res.redirect('/login')
-                }
-                req.logIn(user, (err) => {
-                    if(err) {
-                        req.flash('error', info.message ) 
-                        return next(err)
-                    }
-
-                    return res.redirect(_getRedirectUrl(req))
-                })
-            })(req, res, next)
         },
-
-
-         register (req, res) {
+        async postLogin(req, res, next) {
+            const { Email, Password } = req.body
+            const user = await User.findOne({ Email })
+            console.log(user)
+            if (user) {
+                pass = user.Password
+                console.log(pass)
+                const match = await bcrypt.compare(Password, pass)
+                console.log(match)
+                if (match) {
+                    return res.redirect('/home')
+                }
+            }
+        },
+        register(req, res) {
             res.render('auth/register')
-         },
-         postRegister(req,res) {
-            const newUser = new User({
-                username:req.body.Username,
-                Email:req.body.Email,
-                Password:req.body.Password
+        },
+        async postRegister(req, res) {
+            const hashPassword = await bcrypt.hash(req.body.Password, 10)
+            const newUser = await new User({
+                username: req.body.Username,
+                Email: req.body.Email,
+                Password: hashPassword
             }).save().then(newUser => {
                 console.log(newUser)
-                res.render('auth/login')
-            }).catch(
-                console.log('something went wrong')
-            )
-         }
+                return res.redirect('/login')
+            })
+        }
     }
 }
 

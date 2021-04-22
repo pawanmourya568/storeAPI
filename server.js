@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
 const passport = require('passport')
+const jwt = require('jsonwebtoken')
 
 const apiRouter = require('./routes/api')
 const webRouter = require('./routes/web')
@@ -15,8 +16,9 @@ const PORT = process.env.PORT || 3000
 
 
 // Database Connection
-const url = 'mongodb://localhost/test';
-mongoose.connect(url,{useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true,useFindAndModify:true});
+const url = 'mongodb+srv://pawan:2222@cluster0.sqlzj.mongodb.net/StoreAPI?retryWrites=true&w=majority';
+mongoose.connect(url,{useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true,useFindAndModify:true})
+    .then(console.log('database connected sucessfully'));
 
 
 
@@ -29,10 +31,10 @@ app.use(session({
 }))
 
 // Passport config
-const passportInit = require('./http/config/passport')
-passportInit(passport)
-app.use(passport.initialize())
-app.use(passport.session())
+// const passportInit = require('./http/config/passport')
+// passportInit(passport)
+// app.use(passport.initialize())
+// app.use(passport.session())
 
 // Global middleware
 app.use((req, res, next) => {
@@ -54,8 +56,11 @@ app.set('view engine', 'ejs')
 app.use('/',webRouter)
 app.use('/',apiRouter)
 
-
-
+const createToken = async() => {
+    const token = await jwt.sign({_id:"pawamikdn"}, "hellousers")
+    console.log(token)
+}
+createToken();
 
 app.listen(PORT, () => {
     console.log(`listning on port ${PORT}`)

@@ -7,4 +7,4 @@ const userSchema = mongoose.Schema({
    Role:{ type: String, default: 'customer' }
 },{timestamps:true})
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model('users', userSchema)

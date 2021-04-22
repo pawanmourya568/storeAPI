@@ -1,12 +1,10 @@
-const popup = require('node-popup')
-
 const Menu = require('../modles/menus')
 
 function apiController() {
     return{
         async getMenuData (req, res) {
             const menu =await Menu.find()
-            res.json(menu)
+            res.send(menu)
             console.log(menu)
          },
          
