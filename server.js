@@ -8,7 +8,7 @@ const session = require('express-session')
 const flash = require('express-flash')
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
-
+require('dotenv').config();
 const apiRouter = require('./routes/api')
 const webRouter = require('./routes/web')
 
@@ -16,9 +16,9 @@ const PORT = process.env.PORT || 3000
 
 
 // Database Connection
-const url = 'mongodb+srv://pawan:2222@cluster0.sqlzj.mongodb.net/StoreAPI?retryWrites=true&w=majority';
+const url = process.env.mongoConnect
 mongoose.connect(url,{useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true,useFindAndModify:true})
-    .then(console.log('database connected sucessfully'));
+   .then(console.log('database connected sucessfully'));
 
 
 
@@ -61,6 +61,12 @@ const createToken = async() => {
     console.log(token)
 }
 createToken();
+
+app.use((req, res, next) => {
+    res.locals.user=user;
+    res.locals.meals=meals;
+    next()
+})
 
 app.listen(PORT, () => {
     console.log(`listning on port ${PORT}`)

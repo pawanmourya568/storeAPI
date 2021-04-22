@@ -1,22 +1,38 @@
 <section id="delMenuItem">
     <div class='container-fluid'>
-        <div class ='row form-group'>
-            
-                <div class='col-4 '></div>
+        <div class='row form-group'>
+
+            <div class='col-4 '></div>
             <div class='col-4 my-5'>
                 <form method="POST" action="/delete">
-                
-                Meal:<br>
-                <input type="text" name="meal" class="form-control"><br>
-                
+                    
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <% meals.forEach(function(meal) {%>
+                              <li><a href="#"><%= meal.Meal %></a></li>
+                              <% }) %>
+                            </ul>
+                          </div>
+                          <select id="cars" name="meal" class="form-control">
+                            <% meals.forEach(function(meal) {%>
+                                <option value=<%= meal.Meal %>><%= meal.Meal %></option>
+                                <% }) %>
+                            
+                            
+                          </select>
+                    <!-- Meal:<br>
+                    <input type="text" name="meal" class="form-control"><br> -->
+
 
                 <button class="btn btn-info" type="submit">Post</button>
-            </form>
+                </form>
             </div>
             <div class="col-4"></div>
-            
+
         </div>
-        
+
         <div></div>
     </div>
 </section>

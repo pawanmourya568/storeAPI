@@ -1,5 +1,6 @@
 const User = require('../modles/users')
 const bcrypt = require('bcrypt')
+const users = require('../modles/users')
 function authController() {
     return {
         login(req, res) {
@@ -11,11 +12,10 @@ function authController() {
             console.log(user)
             if (user) {
                 pass = user.Password
-                console.log(pass)
                 const match = await bcrypt.compare(Password, pass)
                 console.log(match)
                 if (match) {
-                    return res.redirect('/home')
+                    return res.render('home',{user:user})
                 }
             }
         },

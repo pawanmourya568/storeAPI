@@ -1,3 +1,5 @@
+const menus = require('../modles/menus')
+const Menu = require('../modles/menus')
 function userController() {
     return{
         index(req, res){
@@ -6,8 +8,10 @@ function userController() {
          postMenu (req,res){
             res.render('PostMenu')
         },
-        delete (req,res) {
-            res.render('delete')
+        async delete (req,res) {
+            const meals = await Menu.find({},{Meal:1,_id:0})
+            console.log(meals)
+            return res.render('delete',{meals : meals})
         },
         updateMenu (req,res) {
             res.render('update')

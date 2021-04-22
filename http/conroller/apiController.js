@@ -27,6 +27,7 @@ function apiController() {
                 res.json(RemoveMenuItem)
         },
         async deleteMenu (req,res){
+            console.log(req.body.meal)
             const RemoveMenuItem = await Menu.remove({ Meal: req.body.meal })
                 res.json(RemoveMenuItem)
         },
