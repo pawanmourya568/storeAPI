@@ -7,7 +7,11 @@ function apiController() {
             res.send(menu)
             console.log(menu)
          },
-         
+         async getSpecificMenuData (req, res) {
+            const menu =await Menu.find({Meal:req.query.meal})
+            res.send(menu)
+            console.log(menu)
+         },
         postMenuData (req,res) {
             const NewMenuItem = new Menu({
         
@@ -28,7 +32,7 @@ function apiController() {
         },
         async deleteMenu (req,res){
             console.log(req.body.meal)
-            const RemoveMenuItem = await Menu.remove({ Meal: req.body.meal })
+            const RemoveMenuItem = await Menu.remove({ _id: req.body.meal })
                 res.json(RemoveMenuItem)
         },
         async updateMenu (req,res){

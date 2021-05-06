@@ -1,17 +1,26 @@
 <section>
+    <style>
+        body{
+            background-image: url(/images/login_Register.png);
+            background-repeat: no-repeat;
+        }
+        </style>
     <div class="container-fluid">
         <div class="row">
             <div class='col-4'></div>
             <div class='col-4'>
+               
+            </div>
+            <div class='col-4'style="padding-right: 5rem;margin-top: 100px;">
+                <h2 style="text-align: center;justify-content: center; display: flex; margin-bottom: 30px;">Registeration Form</h2> 
                 <form action="/register" method="POST" class="form-group">
 
-                    <input type="text" placeholder="Username" name='Useranme' class="form-control"><br>
-                    <input type="email" placeholder="Email" name='Email' class="form-control"><br>
-                    <input type="password" placeholder="Password" name='Password'  class="form-control"><br>
+                    <input type="text" placeholder="Username" name='Username' class="form-control" required><br>
+                    <input type="email" placeholder="Email" name='Email' class="form-control" required><br>
+                    <input type="password" placeholder="Password" name='Password'  class="form-control" required><br>
                     <button type="submit" class="form-control btn btn-info">Register</button>
                 </form>
             </div>
-            <div class='col-4'></div>
         </div>
     </div>
 </section>

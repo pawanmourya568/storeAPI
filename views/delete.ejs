@@ -1,38 +1,31 @@
 <section id="delMenuItem">
+    <style>
+        body{
+            background-image: url(/images/Delete.jpg);
+            background-repeat: no-repeat;
+        }
+    </style>
     <div class='container-fluid'>
         <div class='row form-group'>
 
             <div class='col-4 '></div>
             <div class='col-4 my-5'>
-                <form method="POST" action="/delete">
-                    
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <% meals.forEach(function(meal) {%>
-                              <li><a href="#"><%= meal.Meal %></a></li>
-                              <% }) %>
-                            </ul>
-                          </div>
-                          <select id="cars" name="meal" class="form-control">
-                            <% meals.forEach(function(meal) {%>
-                                <option value=<%= meal.Meal %>><%= meal.Meal %></option>
-                                <% }) %>
-                            
-                            
-                          </select>
-                    <!-- Meal:<br>
-                    <input type="text" name="meal" class="form-control"><br> -->
-
-
-                <button class="btn btn-info" type="submit">Post</button>
-                </form>
             </div>
-            <div class="col-4"></div>
+            <div class="col-4" style="padding-right: 5rem; margin-top: 8rem;">
+                <form method="POST" action="/delete">
+                    <h3 class="mt-5 mb-5">Delete</h3> 
+                    <select id="meal" name="meal" class="form-control mb-5">
+                      <% meals.forEach(function(meal) {%>
+                          <option value=<%= meal._id %>><%= meal.Meal %></option>
+                          <% }) %>
+                    </select>
+              
 
+
+          <button class="btn btn-outline-danger" type="submit">Delete</button>
+          </form>
+            </div>
         </div>
-
         <div></div>
     </div>
 </section>

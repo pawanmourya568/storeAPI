@@ -6,15 +6,20 @@ function userController() {
             res.render('home')
          },
          postMenu (req,res){
-            res.render('PostMenu')
+            res.render('PostMenu',{image:'/images/post.png'})
         },
         async delete (req,res) {
-            const meals = await Menu.find({},{Meal:1,_id:0})
+            const meals = await Menu.find({},{Meal:1,_id:1})
             console.log(meals)
             return res.render('delete',{meals : meals})
         },
-        updateMenu (req,res) {
-            res.render('update')
+        async updateMenu (req,res) {
+            const meals = await Menu.find({},{Meal:1,_id:1},)
+            res.render('update',{image:'images/update.png'})
+        },
+        api (req,res){
+            const user =req.session.user
+            res.render('api',{user:user})
         }
     }
 }

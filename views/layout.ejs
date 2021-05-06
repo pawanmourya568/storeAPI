@@ -5,34 +5,60 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-<!-- jQuery library -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="../public/css/app.scss">
   <title>MyAPI</title>
+  <style type="text/css">
+    .bg1 {
+        background-image: url("image/child2.jpg");
+        height: 100%;
+        width: 100%;
+    }
+
+    #log {
+        padding: 60px 40px;
+        margin-top: 80px;
+        box-shadow: -5px 2px 62px 8px rgb(0, 0, 0);
+    }
+
+    .shadow {
+        box-shadow: -5px 2px 62px 8px rgb(0, 0, 0);
+    }
+
+    .img {
+        align-items: center;
+        align-content: center;
+    }
+
+    .h1 {
+        color: white;
+        text-align: center;
+        font-weight: bolder;
+    }
+</style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#" style="margin-left: 50px;">StoreAPI</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="margin-right: 50px;">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
           <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
         </li>
-
-        <% if(user) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <% user=session.user; if(user) { %>
+          <% if(user.Role== 'admin') { %>
         <li class="nav-item">
           <a class="nav-link" href="/update">Update</a>
         </li>
@@ -43,24 +69,33 @@
         <li class="nav-item">
           <a class="nav-link" href="/delete">Delete</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
         <% } else { %>
-
+          <li class="nav-item">
+            <a class="nav-link" href="/api">My API</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+          <% } %>
+        <% } else { %>
+          
         <li class="nav-item">
           <a class="nav-link" href="/login">Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/register">Register</a>
         </li>
+        
         <% } %>
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+      <% if(user) { %>
+      <h5 class="text-primary ml-3"><%= user.Username%></h5>
+      <% } %>
     </div>
   </nav>
-
   <%- body %>
 </body>
-
 </html>

@@ -1,15 +1,24 @@
 <section id="delMenuItem">
+    <style>
+        body{
+            background-image: url(/images/update.png);
+            background-repeat: no-repeat;
+        }
+    </style>
     <div class='container-fluid'>
         <div class ='row form-group'>
             
                 <div class='col-4 '></div>
-            <div class='col-4 my-5'>
+            <div class='col-4'>
+               
+            </div>
+            <div class="col-4" style="padding-right: 5rem; margin-top: 80px;"> 
                 <form method="POST" action="/updateMenu">
-                
+                <h2 style="justify-content: center; display: flex;">Update</h2>
                 Meal:<br>
                 <input type="text" name="meal" class="form-control"><br>
                 
-                select Type:<br>
+                select Attribute:<br>
                 <input type="text" name="valueOf" class="form-control"><br>
 
                 Enter Value:<br>
@@ -17,9 +26,7 @@
 
 
                 <button class="btn btn-info" type="submit">Update</button>
-            </form>
-            </div>
-            <div class="col-4"></div>
+            </form></div>
             
         </div>
         

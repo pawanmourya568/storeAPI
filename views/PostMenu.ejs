@@ -1,10 +1,19 @@
 <section id="postMenuItem">
+    <style>
+        body{
+            background-image: url(/images/post.png);
+            background-repeat: no-repeat;
+        }
+    </style>
     <div class='container-fluid'>
         <div class ='row form-group'>
             
                 <div class='col-4 '></div>
-            <div class='col-4 my-5'>
-                <form method="Post" action="/updateMenu">
+            <div class='col-4'>
+            </div>
+            <div class="col-4"style="padding-right: 5rem; margin-top: 50px;">
+            <form method="Post" action="/updateMenu">
+                <h3 class="mb-4">Post Data</h3>
                 Type:<br>
                 <input type="text" name="type" class="form-control"><br>
                 Meal:<br>
@@ -19,10 +28,8 @@
                 <button class="btn btn-info" type="submit">Post</button>
             </form>
             </div>
-            <div class="col-4"></div>
-            
         </div>
         
-        <div></div>
+        
     </div>
 </section>

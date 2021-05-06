@@ -11,8 +11,11 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config();
 const apiRouter = require('./routes/api')
 const webRouter = require('./routes/web')
+const auth = require('./http/middlewares/auth.js')
+const router = require('./routes/api')
 
 const PORT = process.env.PORT || 3000
+
 
 
 // Database Connection
@@ -30,11 +33,6 @@ app.use(session({
     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
 }))
 
-// Passport config
-// const passportInit = require('./http/config/passport')
-// passportInit(passport)
-// app.use(passport.initialize())
-// app.use(passport.session())
 
 // Global middleware
 app.use((req, res, next) => {
@@ -44,7 +42,7 @@ app.use((req, res, next) => {
 })
 app.use(flash())
 
-
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
@@ -63,8 +61,8 @@ const createToken = async() => {
 createToken();
 
 app.use((req, res, next) => {
-    res.locals.user=user;
-    res.locals.meals=meals;
+    // res.locals.user=user;
+    // res.locals.meals=meals;
     next()
 })
 
