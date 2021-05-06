@@ -4,12 +4,13 @@ const express = require('express')
 const router = express.Router()
 const User= require('../http/modles/users')
 const auth = require('../http/middlewares/auth')
+const AlreadyLogin = require('../http/middlewares/AlreadyLogin')
 
 router.get('/home',userController().index)
 
-router.get('/login',authController().login)
+router.get('/login',AlreadyLogin,authController().login)
 router.post('/login',authController().postLogin)
-router.get('/register', authController().register)
+router.get('/register',AlreadyLogin, authController().register)
 router.post('/register',authController().postRegister)
 
 router.get('/post',auth ,userController().postMenu)
