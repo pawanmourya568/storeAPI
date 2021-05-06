@@ -6,7 +6,7 @@ const User= require('../http/modles/users')
 const auth = require('../http/middlewares/auth')
 const AlreadyLogin = require('../http/middlewares/AlreadyLogin')
 
-router.get('/home',userController().index)
+router.get('/',userController().index)
 
 router.get('/login',AlreadyLogin,authController().login)
 router.post('/login',authController().postLogin)
