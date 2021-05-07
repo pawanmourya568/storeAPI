@@ -5,13 +5,25 @@ function apiController() {
         async getMenuData (req, res) {
             const menu =await Menu.find()
             res.send(menu)
-            console.log(menu)
          },
          async getSpecificMenuData (req, res) {
-            const menu =await Menu.find({Meal:req.query.meal})
+             const meal= req.query.meal
+             const reg= "/"+meal+"/i";
+             const p=/chicken Rice Bowl/i
+             console.log(reg)
+            const menu =await Menu.find({Meal:{$regex:meal,$options:"$i"}})
             res.send(menu)
-            console.log(menu)
          },
+         async getSpecificMenuData (req, res) {
+             const meal= req.query.meal
+            const menu =await Menu.find({Meal:{$regex:meal,$options:"$i"}})
+            res.send(menu)
+         },
+         async getTypeMenuData (req, res) {
+            const type= req.query.type
+           const menu =await Menu.find({Type:{$regex:type,$options:"$i"}})
+           res.send(menu)
+        },
         postMenuData (req,res) {
             const NewMenuItem = new Menu({
         

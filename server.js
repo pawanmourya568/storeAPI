@@ -56,7 +56,7 @@ app.use('/',apiRouter)
 
 const createToken = async() => {
     const token = await jwt.sign({_id:"pawamikdn"}, "hellousers")
-    console.log(token)
+    // console.log(token)
 }
 createToken();
 

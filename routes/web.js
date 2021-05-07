@@ -7,7 +7,7 @@ const auth = require('../http/middlewares/auth')
 const AlreadyLogin = require('../http/middlewares/AlreadyLogin')
 
 router.get('/',userController().index)
-
+router.get('/aboutus',userController().aboutus)
 router.get('/login',AlreadyLogin,authController().login)
 router.post('/login',authController().postLogin)
 router.get('/register',AlreadyLogin, authController().register)

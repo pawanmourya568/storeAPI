@@ -1,13 +1,26 @@
 <div class="container">
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6">
-           <div class="sucess mt-5"> 
-               <h3 class="border-round" style="background:cyan; border:dimgrey;border-radius: 40px;">API key = <%= user._id %><br>
-                </h3>
-            </div>
-            <h3><div class="mt-5">must visit doccumentation page to see how to use this API :)</h3></div>
-        </div>
-        <div class="col-3"></div>
+    <div class="mt-5">
+        <h3 class="border-round pl-3 p-2"
+            style="background:cyan; border:dimgrey;border-radius: 5px;text-align: center;margin-left: 200px;margin-right: 200px;">API key = <%= user._id %>
+        </h3>
+    </div>
+    <div class="mt-5">
+        <h4>East to use. Just go through the docs And Use your own API to access it. Just Cpoy and paste your API in
+            place of your API in link</h4>
+    </div>
+    <div class="mt-5">
+        1. To access all Data from From API<br>
+        <div class="p-2 mt-2" style="background: rgb(192, 238, 128);border-radius: 5px;border-color: rgb(173, 211, 5);margin-right: 350px; margin-left: 30px;">
+            https://my-storeapi.herokuapp.com/getdata?APIKey=Your_Api_Key</div>
+    </div>
+    <div class="mt-3">
+        2. To access single specified Data from From API<br>
+        <div class="p-2 mt-2" style="background: rgb(192, 238, 128);border-radius: 5px;border-color: rgb(173, 211, 5);margin-right: 350px; margin-left: 30px;">
+            https://my-storeapi.herokuapp.com/specficdata?APIKey=Your_Api_Key&meal=Meal_to_Access</div>
+    </div>
+    <div class="mt-3">
+        3. To access all Data of specific type from API<br>
+        <div class="p-2 mt-2" style="background: rgb(192, 238, 128);border-radius: 5px;border-color: rgb(173, 211, 5);margin-right: 350px; margin-left: 30px;">
+            https://my-storeapi.herokuapp.com/typeData?APIKey=Your_Api_Key&type=Type_of_Data_to_Access</div>
     </div>
 </div>

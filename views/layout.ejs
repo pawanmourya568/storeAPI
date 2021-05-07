@@ -52,10 +52,10 @@
     <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="margin-right: 50px;">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
+          <a class="nav-link" href="/aboutus">About Us</a>
         </li>
         <% user=session.user; if(user) { %>
           <% if(user.Role== 'admin') { %>

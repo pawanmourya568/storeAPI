@@ -4,11 +4,11 @@ const users = require('../modles/users')
 function authController() {
     return {
         login(req, res) {
-            res.render('auth/login',{image:'images/login_Register.png'})
+            res.render('auth/login')
         },
         async postLogin(req, res, next) {
             const { Email, Password } = req.body
-            User.findOne({Email},async (err,user)=> {
+            User.findOne({Email:{$regex:Email,$options:"$i"}},async (err,user)=> {
                 
             if (user) {
                 pass = user.Password
@@ -27,7 +27,7 @@ function authController() {
             
         },
         register(req, res) {
-            res.render('auth/register',{image:'images/login_Register.png'})
+            res.render('auth/register')
         },
         async postRegister(req, res) {
             const hashPassword = await bcrypt.hash(req.body.Password, 10)
@@ -36,7 +36,6 @@ function authController() {
                 Email: req.body.Email,
                 Password: hashPassword
             }).save().then(newUser => {
-                console.log(newUser)
                 return res.redirect('/login')
             })
         },

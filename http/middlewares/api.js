@@ -8,7 +8,6 @@ function checkAPI (req,res,next){
                 console.log(err);
             }
             else{
-                console.log("Result : ", docs);
                 next()
             }
         });
